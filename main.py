@@ -1,8 +1,8 @@
 import tkinter as tk
 import os
-from Input.input_module import scegli_file_svs
-from ImageHistolabManager.ImageHistodef import create_patch
-from Processing.Etichettatura import Etichettatore
+from Input_module.input_module import scegli_file_svs
+from ImageManager_module.histolab_module import create_patch
+from Processing_module.Etichettatura import Etichettatore
 
 path = scegli_file_svs()
 cartella_patch = create_patch(path)
