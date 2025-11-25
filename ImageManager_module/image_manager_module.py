@@ -6,8 +6,7 @@ class Immagine:
         self.image_obj = Image.open(image_path)
         #TODO se immagine molto grande può dare problemi (progettare versione successiva)
 
-        self.size = self.image_obj.size
-        #TODO verificare che sia una tupla
+        self.size = self.image_obj.size #restituisce una tupla (width, height)
 
         self.patches = [] #le patch non dovranno essere memorizzate nella versione finale
         self.patches_coords = [] #lista coordinate sup-SX della patch
