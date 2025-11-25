@@ -18,25 +18,41 @@ class Immagine:
 
     #metodo divide in patch
     def create_patches(self, tile_w, tile_h):
-        w, h = self.original_size
+        w, h = self.size
+        x_coords = []
+        y_coords = []
 
 
         # Determina coordinate di partenza per y
-        y_coords = list(range(0, h, tile_h))
+        # Se altezza patch non è multiplo di altezza immagine
         if h % tile_h != 0:
-            y_coords.append(h - tile_h)
-        y_coords = sorted(list(set(y_coords)))  # rimuove duplicati e ordina
+            num_patches = h // tile_h
+            used_size = tile_h * num_patches
+            starded_patches = (h - used_size) // 2
+            current_start = starded_patches
+            for _ in range(num_patches):
+                y_coords.append(current_start)
+                current_start += tile_h
+        else:
+            y_coords = list(range(0, h, tile_h))
 
         # Determina coordinate di partenza per x
-        x_coords = list(range(0, w, tile_w))
+        # Se larghezza patch non è multiplo di larghezza immagine
         if w % tile_w != 0:
-            x_coords.append(w - tile_w)
-        x_coords = sorted(list(set(x_coords)))
+            num_patches = w // tile_w
+            used_size = tile_w * num_patches
+            starded_patches = (w - used_size) // 2
+            current_start = starded_patches
+            for _ in range(num_patches):
+                x_coords.append(current_start)
+                current_start += tile_h
+        else:
+            x_coords = list(range(0, w, tile_w))
 
-        #TODO lista coords unica: [(x1, y1), (x2, y2), ..., (xn, yn)]
+        # Crea una lista di tuple con tutte le coordinate delle patch
+        self.patches_coords = [(x, y) for x in x_coords for y in y_coords]
+
         #TODO end create_patches -> estrazione riservata a un altro modulo che chiama la singola patch
-
-        self.patches_coords = []
 
 
         for y in y_coords:
