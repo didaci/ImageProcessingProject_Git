@@ -64,4 +64,6 @@ immagine1 = Immagine(image_path)
 tile_w=int(input("Inserisci larghezza patch:"))
 tile_h=int(input("Inserisci altezza patch:"))
 
-immagine1.create_patches(tile_w, tile_h)"""
+immagine1.create_patches(tile_w, tile_h)
+print(immagine1.patches_coords)
+"""
