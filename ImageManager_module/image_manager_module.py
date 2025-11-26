@@ -4,7 +4,8 @@ from PIL import Image
 class Immagine:
     def __init__(self, image_path):
         self.image_obj = Image.open(image_path)
-        #TODO se immagine molto grande può dare problemi (progettare versione successiva)
+        # funzione Image.open() è lazy finché non si utilizzano altre funzioni di manipolazione
+        # TODO se immagine molto grande può dare problemi (progettare versione successiva)
 
         self.size = self.image_obj.size #restituisce una tupla (width, height)
 
@@ -49,37 +50,18 @@ class Immagine:
         else:
             x_coords = list(range(0, w, tile_w))
 
-        # Crea una lista di tuple con tutte le coordinate delle patch
+        # Crea una lista con le coordinate di ogni singola patch
         self.patches_coords = [(x, y) for x in x_coords for y in y_coords]
 
-        #TODO end create_patches -> estrazione riservata a un altro modulo che chiama la singola patch
-
-
-        for y in y_coords:
-            for x in x_coords:
-                box = (x, y, x + tile_w, y + tile_h)
-
-                # Se box si estende oltre (w, h) il crop ferma automaticamente al bordo dell'immagine
-                # creando patch parziali
-                tile = self.image_obj.crop(box)
-
-                # converte patch in array NumPy
-                self.patches.append(np.array(tile))
-                self.patches_coords.append((x, y))
-
-        return self.patches, self.patches_coords
 
 
 
 
 ## PROVA FUNZIONAMENTO CLASSE E METODI ##
 """
-immagine1 = Immagine()
+immagine1 = Immagine(image_path)
 
-immagine1.crea_immagine()
 tile_w=int(input("Inserisci larghezza patch:"))
 tile_h=int(input("Inserisci altezza patch:"))
 
-immagine1.create_patches(tile_w, tile_h)
-
-immagine1.reconstruct_image()"""
+immagine1.create_patches(tile_w, tile_h)"""
