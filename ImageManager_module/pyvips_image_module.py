@@ -10,7 +10,7 @@ class Image:
         self.patches_coords = self.get_coords()
 
 
-
+    # Determina la lista di coordinate di tutte le patch
     def get_coords(self,):
         file_path = self.file_path
         tile_h = self.tile_h
@@ -51,8 +51,7 @@ class Image:
         return patches_coords
 
 
-
-
+    # Determina le coordinate di una patch specifica
     def find_tile_coords(self, x_coord, y_coord):
         tile_w = self.tile_w
         tile_h = self.tile_h
@@ -66,7 +65,7 @@ class Image:
             print("Coordinata non trovata!")
 
 
-
+    # Estrae e salva una singola patch
     def extract_patch(self, output_path, tile_coords):
         file_path = self.file_path
 
