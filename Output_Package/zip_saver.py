@@ -9,14 +9,14 @@ class ZipDataSetSaver(DatasetSaver):
     def __init__(self, output_path):
         """
         Inizializza il writer e crea le cartelle necessarie.
-        :param full_output_path: Percorso completo del file zip (es. 'output/2023/dataset.zip')
+        output_path: Percorso completo del file zip ('Path/dataset.zip')
         """
         self.output_path = output_path
         self.zip_file = None
         self.csv_buffer = []
 
 
-        # Estre la directory dal percorso (togliamo un eventuale del file .zip)
+        # Estre la directory dal percorso (toglie un eventuale del file .zip)
         directory = os.path.dirname(self.output_path)
 
         if directory:
@@ -26,7 +26,7 @@ class ZipDataSetSaver(DatasetSaver):
 
 
     def __enter__(self):
-        # Apre il file zip usando il percorso
+        # Apre il file zip in modalità scrittura usando il percorso
         self.zip_file = zipfile.ZipFile(self.output_path, 'w', zipfile.ZIP_DEFLATED)
         return self
 
