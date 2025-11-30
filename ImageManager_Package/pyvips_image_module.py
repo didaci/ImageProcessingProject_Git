@@ -52,11 +52,9 @@ class Image:
 
     # Determina le coordinate di una patch specifica
     def find_tile_coords(self, x_coord, y_coord):
-        tile_w = self.tile_w
-        tile_h = self.tile_h
         patches_coords = self.patches_coords
 
-        tile_coords = next((t for t in patches_coords if t[0]<= x_coord <(t[0]+tile_w) and t[1]<= y_coord <(t[1]+tile_h)))
+        tile_coords = next((t for t in patches_coords if t[0]<= x_coord <(t[0]+self.tile_w) and t[1]<= y_coord <(t[1]+self.tile_h)))
 
         if tile_coords:
             return tile_coords
