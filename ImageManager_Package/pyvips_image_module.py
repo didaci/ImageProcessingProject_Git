@@ -12,8 +12,6 @@ class Image:
     # Determina la lista di coordinate di tutte le patch
     def get_coords(self,):
         file_path = self.file_path
-        tile_h = self.tile_h
-        tile_w = self.tile_w
 
         #Legge solo l'header del file per ottenere le dimensioni
         image = pyvips.Image.new_from_file(file_path)
@@ -22,29 +20,29 @@ class Image:
 
         # Determina coordinate per y
         # Gestisce caso tile_h non multiplo di image.height
-        if image.height % tile_h != 0:
-            num_patches = image.height // tile_h
-            used_size = num_patches * tile_h
+        if image.height % self.tile_h != 0:
+            num_patches = image.height // self.tile_h
+            used_size = num_patches * self.tile_h
             started_patch = (image.height - used_size) // 2
             for _ in range(num_patches):
                 y_coords.append(started_patch)
-                started_patch += tile_h
+                started_patch += self.tile_h
         else:
-            y_coords = list(range(0, image.height, tile_h))
+            y_coords = list(range(0, image.height, self.tile_h))
 
         # Determina coordinate per x
         # Gestisce caso tile_w non multiplo di image.width
-        if image.width % tile_w != 0:
-            num_patches = image.width // tile_w
-            used_size = num_patches * tile_w
+        if image.width % self.tile_w != 0:
+            num_patches = image.width // self.tile_w
+            used_size = num_patches * self.tile_w
             started_patch = (image.width - used_size) // 2
             for _ in range(num_patches):
                 x_coords.append(started_patch)
-                started_patch += tile_w
+                started_patch += self.tile_w
         else:
-            x_coords = list(range(0, image.width, tile_w))
+            x_coords = list(range(0, image.width, self.tile_w))
 
-        patches_coords = [(x, y, tile_w, tile_h) for y in y_coords for x in x_coords]
+        patches_coords = [(x, y, self.tile_w, self.tile_h) for y in y_coords for x in x_coords]
 
 
         return patches_coords
