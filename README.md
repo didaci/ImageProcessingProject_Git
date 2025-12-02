@@ -115,3 +115,20 @@ L’orchestratore deve essere scritto in modo modulare e configurabile, in modo 
 
 - poter sostituire facilmente un modulo (input, elaborazione o output) con un altro;
 - adattarsi a flussi di lavoro diversi (ad esempio diversi formati di input o modalità di annotazione).
+
+# NOTE 02.12.2025
+
+
+- setting iniziali: quante classi?
+- calibrazione (dimensione patch)
+
+- L'etichettatura a livello di singola patch può rivelarsi eccessivamente lunga e in concreto non gestibile. 
+  - etichettatura fine su train, a livello di paziente su test - occorre quindi definire train e test già durante annotazione
+ 
+- statistiche suo dati
+
+Versione del programma che accetti in input immagini già divise in patch
+
+Ragionare su un formato standard per i dataset - analogo a BID per EEG
+
+
