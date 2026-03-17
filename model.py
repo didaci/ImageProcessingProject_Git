@@ -144,7 +144,7 @@ class Model(QObject):
 
             if self.method_input == "Dataset":
                 fname = self.current_meta
-                self.writer.save_file_Dataset(fname, label)
+                self.writer.save_patch_Dataset(fname, label)
                 self.next_patch()
 
 

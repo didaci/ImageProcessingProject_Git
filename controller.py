@@ -93,7 +93,7 @@ class Controller(QObject):
     def gestisci_play_dataset(self, data: PageRequestDataset):
         # Dizionario con dati per il Model
         config = {
-            'manager' : "Cartella",
+            'manager' : "Dataset",
             'folder_path' : data.path_directory,
             'order_show' : data.order_show,
         }

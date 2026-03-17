@@ -3,7 +3,6 @@ from abc import ABC, abstractmethod
 import os
 import random
 
-from main_test import input_path
 
 
 class DatasetManager(ImageManager, ABC):
@@ -12,14 +11,14 @@ class DatasetManager(ImageManager, ABC):
         self.patches_list = self.get_items()
 
     @abstractmethod
-    def extract_patches(self, file_name):
+    def extract_patch(self, file_name):
         # Dato il nome file resituisce un'oggetto patch
         pass
 
     def get_items(self):
         valid_ext = ['.jpg', '.jpeg', '.png', '.tif', '.tiff']
 
-        patches_list = [p for p in os.listdir(input_path) if p.lower().endswith(tuple(valid_ext))]
+        patches_list = [p for p in os.listdir(self.input_path) if p.lower().endswith(tuple(valid_ext))]
         sorted_patches_list = sorted(patches_list)
         return sorted_patches_list
 
@@ -28,13 +27,13 @@ class DatasetManager(ImageManager, ABC):
 
         # TODO Valutare se necassari random/sequential
         if method == 'random':
-            random.shuffle(self.patch_list)
+            random.shuffle(patch_list)
         elif method == 'sequential':
             patch_list = patch_list
         else:
             raise NotImplementedError
 
         for file_name in patch_list:
-            patch = self.extract_patches(file_name)
+            patch = self.extract_patch(file_name)
             # TODO Ragionare su output metodo
             yield patch, file_name

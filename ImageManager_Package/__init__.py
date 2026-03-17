@@ -7,7 +7,7 @@ def get_manager(method, input_path, tile_w=0, tile_h=0):
         from ImageManager_Package.Dataset_Manager.vips_dataset_manager import VipsDatasetManager
         return VipsDatasetManager(input_path)
     else:
-        raise ValueError(f"Metodo {method} non supportato")
+        raise ValueError(f"Metodo input {method} non supportato")
 
         # TODO decidere se implementare secondo metodo (TiffSlide):
     """
