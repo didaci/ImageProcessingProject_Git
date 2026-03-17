@@ -105,11 +105,12 @@ class SlideManager(ImageManager, ABC):
         n_patches_x = self.width // self.tile_w
         n_patches_y = self.height // self.tile_h
 
-        if n_patches_x == 0 or n_patches_y == 0: return []
+        if (n_patches_x == 0 or n_patches_y == 0):
+            return []
 
         # --- MAPPATURA MASCHERA -> GRIGLIA ---
         # Resize maschera in modo che ogni pixel corrisponda a una patch della griglia
-        mini_mask = cv2.resize(binary_mask, (n_patches_x, n_patches_y), interpolation=cv2.INTER_NEAREST)
+        mini_mask = cv2.resize(binary_mask, (n_patches_x, n_patches_y), interpolation=cv2.INTER_AREA)
 
         # Normalizza i valori da [0, 255] a [0, 1]
         mini_mask = mini_mask / 255.0
